@@ -24,7 +24,7 @@ function isPalindrome(value) {
 /**
  * Извлекает цифры из `value`;
  * @param {string | number} value
- * @param {number}
+//  * @param {number}
  */
 function parseDigits(value) {
   const digits = String(value).replace(/[^0-9]+/g, '');
@@ -34,5 +34,5 @@ function parseDigits(value) {
 }
 
 fitsLength('Hello', 10);
-isPalindrome('Лёша на полке клопа нашёл ')
-parseDigits('1 кефир, 0.5 батона')
+isPalindrome('Лёша на полке клопа нашёл');
+parseDigits('1 кефир, 0.5 батона');
