@@ -1,5 +1,6 @@
+
 /**
- *Проверяет длину value
+ *Проверит длину value
  * @param {string} value
  * @param {number}length
  * @returns {boolean}
@@ -21,16 +22,16 @@ function isPalindrome(value) {
   return normalized === reversed;
 
 }
+
 /**
  * Извлекает цифры из `value`;
  * @param {string | number} value
-//  * @param {number}
+ * @param {number}
  */
 function parseDigits(value) {
   const digits = String(value).replace(/[^0-9]+/g, '');
+
   return digits ? Number(digits) : NaN;
-
-
 }
 
 fitsLength('Hello', 10);
