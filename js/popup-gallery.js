@@ -2,6 +2,10 @@ import {showPopup} from './popup.js';
 
 const popup = document.querySelector('.big-picture');
 const commentTemplate = popup.querySelector('.social__comment');
+/**
+ * @type {ReturnType<createCommentsRenderer>}
+ */
+let renderNextComments;
 
 /**
  * @param {Picture} data
@@ -12,9 +16,33 @@ function renderPopup(data) {
   popup.querySelector('.likes-count').textContent = String(data.likes);
   popup.querySelector('.social__comments').replaceChildren(...data.comments.map(createComment));
 
+  renderNextComments = createCommentsRenderer(data.comments);
+  renderNextComments();
+  popup.addEventListener('click', onPopupClick);
+
   showPopup(popup);
 }
+/**
+ * @param {Array<PictureComment>} data
+ * @param {number} step
+ * @returns {() => void}
+ */
+function createCommentsRenderer(data, step = 5) {
+  const discussion = popup.querySelector('.social__comments');
+  const moreButton = popup.querySelector('.comments-loader');
+  const [shownCount, totalCount] = popup.querySelectorAll('.comments-count');
+  const commentsTotal = data.length;
 
+  data = structuredClone(data);
+  discussion.textContent = '';
+  totalCount.textContent = String(commentsTotal);
+
+  return () => {
+    discussion.append(...data.splice(0, step).map(createComment));
+    moreButton.classList.toggle('hidden', data.length === 0);
+    shownCount.textContent = String(commentsTotal - data.length);
+  };
+}
 /**
  * @param {PictureComment} data
  * @returns {HTMLLIElement}
@@ -28,5 +56,12 @@ function createComment(data) {
 
   return comment;
 }
-
+/**
+ * @param {MouseEvent & {target: Element}} event
+ */
+function onPopupClick(event) {
+  if (event.target.closest('.comments-loader')) {
+    renderNextComments();
+  }
+}
 export default renderPopup;
