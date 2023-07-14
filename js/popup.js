@@ -6,11 +6,9 @@ function showPopup(popup) {
   popup.scroll(0, 0);
   popup.addEventListener('click', onPopupClick);
 
-
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
 }
-
 
 /**
  * @param {Element} popup
@@ -19,11 +17,9 @@ function hidePopup(popup) {
   popup.classList.add('hidden');
   popup.removeEventListener('click', onPopupClick);
 
-
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
 }
-
 
 /**
  * @param {MouseEvent & {target: Element, currentTarget: Element}} event
@@ -34,7 +30,6 @@ function onPopupClick(event) {
   }
 }
 
-
 /**
  * @param {KeyboardEvent} event
  */
@@ -43,6 +38,5 @@ function onDocumentKeydown(event) {
     hidePopup(document.querySelector('.overlay:not(.hidden)'));
   }
 }
-
 
 export {showPopup, hidePopup};
