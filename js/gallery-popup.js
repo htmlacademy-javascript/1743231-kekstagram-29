@@ -2,6 +2,7 @@ import {showPopup} from './popup.js';
 
 const popup = document.querySelector('.big-picture');
 const commentTemplate = popup.querySelector('.social__comment');
+
 /**
  * @type {ReturnType<createCommentsRenderer>}
  */
@@ -14,7 +15,6 @@ function renderPopup(data) {
   popup.querySelector('.big-picture__img img').setAttribute('src', data.url);
   popup.querySelector('.social__caption').textContent = data.description;
   popup.querySelector('.likes-count').textContent = String(data.likes);
-  popup.querySelector('.social__comments').replaceChildren(...data.comments.map(createComment));
 
   renderNextComments = createCommentsRenderer(data.comments);
   renderNextComments();
@@ -22,6 +22,7 @@ function renderPopup(data) {
 
   showPopup(popup);
 }
+
 /**
  * @param {Array<PictureComment>} data
  * @param {number} step
@@ -43,6 +44,7 @@ function createCommentsRenderer(data, step = 5) {
     shownCount.textContent = String(commentsTotal - data.length);
   };
 }
+
 /**
  * @param {PictureComment} data
  * @returns {HTMLLIElement}
@@ -56,6 +58,7 @@ function createComment(data) {
 
   return comment;
 }
+
 /**
  * @param {MouseEvent & {target: Element}} event
  */
@@ -64,4 +67,5 @@ function onPopupClick(event) {
     renderNextComments();
   }
 }
+
 export default renderPopup;

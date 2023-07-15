@@ -1,4 +1,4 @@
-import {pickItemFromArray, pickIntegerInRange} from './util.js';
+import {pickItemFromArray, pickIntegerInRange} from './utils.js';
 
 const descriptions = [
   'описание 1',
@@ -22,8 +22,9 @@ const names = [
   'Денис',
   'Максим',
 ];
+
 /**
- * @param {number} [length]
+ * @param {number} length
  * @returns {Array<Picture>}
  */
 function createPictureArray(length = 25) {
@@ -31,8 +32,6 @@ function createPictureArray(length = 25) {
 
   return items.map((start, index) => createPicture(start + index));
 }
-
-createPictureArray();
 
 /**
  * @param {number} id
@@ -48,7 +47,6 @@ function createPicture(id) {
 }
 
 /**
- * генерирует случайные комментарии
  * @param {number} length
  * @returns {Array<PictureComment>}
  */
@@ -69,6 +67,5 @@ function createPictureComment(id) {
 
   return {id, avatar, message, name};
 }
-
 
 export default createPictureArray;
