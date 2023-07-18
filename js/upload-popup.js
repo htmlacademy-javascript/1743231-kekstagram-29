@@ -1,6 +1,9 @@
 import { showPopup } from './popup.js';
+import initScaleControl from './scale-control.js';
 
 const popup = document.querySelector('.img-upload__overlay');
+const preview = popup.querySelector('img');
+const scaleControl = initScaleControl(popup.querySelector('.scale'));
 
 /**
  * @param {File} data
@@ -8,8 +11,15 @@ const popup = document.querySelector('.img-upload__overlay');
 function renderPopup(data) {
   //TODO: Подстановка изображения
   void data;
-
+  scaleControl.on('update', onScaleControlUpDate);
+  scaleControl.setValue(100);
   showPopup(popup);
 }
 
+function onScaleControlUpDate() {
+  const percent = scaleControl.getValue();
+  const ratio = percent / 100;
+
+  preview.style.setProperty('transform', `scale(${ratio})`);
+}
 export default renderPopup;
