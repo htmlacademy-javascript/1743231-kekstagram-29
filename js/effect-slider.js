@@ -47,12 +47,13 @@ function createOptions(type = 'none') {
    * @type {Record<EffectType, Array<number>>}
    */
   const effectRangeMap = {
+
     none: [0, 100, 1],
-    chrome: [0, 1, 0.1],
-    sepia: [0, 1, 0.1],
+    chrome: [0, 1, .1],
+    sepia: [0, 1, .1],
     marvin: [0, 100, 1],
-    phobos: [0, 3, 0.1],
-    heat: [1, 3, 0.1]
+    phobos: [0, 3, .1],
+    heat: [1, 3, .1]
   };
 
   /**
@@ -62,8 +63,8 @@ function createOptions(type = 'none') {
     none: () => '',
     chrome: (value) => `grayscale(${value})`,
     sepia: (value) => `sepia(${value})`,
-    marvin: (value) => `invert(${value})`,
-    phobos: (value) => `blur(${value})`,
+    marvin: (value) => `invert(${value}%)`,
+    phobos: (value) => `blur(${value}px)`,
     heat: (value) => `brightness(${value})`
   };
   const [min, max, step] = effectRangeMap[type];
