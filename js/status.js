@@ -15,7 +15,7 @@ function renderStatus(type) {
  */
 function showStatus (status){
   status.addEventListener('click', onStatusClick);
-  document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('keydown', onDocumentKeydown, true);
   document.body.append(status);
 }
 
@@ -25,7 +25,7 @@ function showStatus (status){
 function hideStatus(status) {
   status.remove();
   status.removeEventListener('click', onStatusClick);
-  document.removeEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('keydown', onDocumentKeydown, true);
 }
 
 /**
@@ -43,6 +43,7 @@ function onStatusClick(event) {
 function onDocumentKeydown(event) {
   if (event.key.startsWith('Esc')) {
     hideStatus(document.querySelector('.success, .error'));
+    event.stopPropagation();
   }
 }
 export default renderStatus;
