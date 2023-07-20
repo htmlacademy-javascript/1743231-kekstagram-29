@@ -1,6 +1,8 @@
 import renderPopup from './upload-popup.js';
 import './pristine-validators.js';
 import { request } from './utils.js';
+import renderStatus from './status.js';
+
 
 /**
  * @type {HTMLFormElement}
@@ -27,8 +29,8 @@ function onFormChange(event) {
     renderPopup(data);
   }
 }
-// @ts-ignore
-renderPopup();
+// // @ts-ignore
+// renderPopup();
 
 function onFormHide(){
   form.reset();
@@ -46,11 +48,18 @@ async function onFormSubmit(event) {
 
   if (!pristine.validate()) {
     return;
+
   }
-  setSubmitBlocking(true);
-  await sendFormData();
-  resetFormAndHidePopup();
-  setSubmitBlocking(false);
+  try {
+    setSubmitBlocking(true);
+    await sendFormData();
+    resetFormAndHidePopup();
+    renderStatus('success');
+  } catch {
+    renderStatus('error');
+  } finally {
+    setSubmitBlocking(false);
+  }
 }
 
 async function sendFormData() {
