@@ -10,6 +10,7 @@ try {
   const data = await request('https://29.javascript.pages.academy/kekstagram/data');
 
   initGallery(data);
+
 } catch (error) {
   const title = `Ошибка: ${error.message}`;
   const button = 'Закрыть';
