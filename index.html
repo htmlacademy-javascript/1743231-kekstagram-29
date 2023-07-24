@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Кекстаграм</title>
-
+  <script src="vendor/pristine/pristine.min.js" defer></script>
+  <script src="vendor/nouislider/nouislider.js" defer></script>
+  <script src="js/main.js" type="module"></script>
 </head>
 
 <body>
@@ -140,7 +142,7 @@
                       class="text__description"
                       name="description"
                       placeholder="Ваш комментарий..."
-                      data-pristine-maxlength="5"
+                      data-pristine-maxlength="140"
                       data-pristine-maxlength-message="Не более ${1} символов"
                   ></textarea>
                   </div>
@@ -249,8 +251,5 @@
       </div>
     </section>
   </template>
-  <script src="vendor/pristine/pristine.min.js" defer></script>
-  <script src="vendor/nouislider/nouislider.js" defer></script>
-<script src="js/main.js" type="module"></script>
 </body>
 </html>
